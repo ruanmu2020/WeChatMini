@@ -1,0 +1,15 @@
+<!--index.wxml-->
+<view class="container">
+  <view class='imagesize'>
+    <image src='{{userImage}}'></image>
+    
+  </view>
+  <view class="usermotto">
+    <text>{{motto}}</text>
+    <text>{{value}}</text>
+  </view>
+  <view class='userbtn'>
+        <button bindtap='bindViewTap'>选择图像</button>
+        <!--<button bindtap="upload"> 开始检测 </button>-->
+  </view>
+</view>

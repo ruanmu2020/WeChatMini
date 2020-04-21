@@ -1,0 +1,11 @@
+.test{
+  width: 100rpx;
+  height: 100rpx;
+  background-color: aqua;
+}
+
+.aa{
+  width: 100rpx;
+  height: 100rpx;
+  background-color: aqua;
+}

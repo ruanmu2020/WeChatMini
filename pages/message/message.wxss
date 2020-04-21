@@ -1,0 +1,237 @@
+.ipt-wrap{
+  min-height: 100rpx;
+  line-height: 100rpx;
+}
+.ipt-wrap label{
+  min-width: 120rpx;
+}
+.icon-youjiantou{
+  position: relative;
+  top: 1rpx;
+}
+.textarea{
+  height: 100rpx;
+}
+/*swtich样式-start*/
+/*swtich整体大小*/
+.wx-switch-input{
+  width:82rpx !important;
+  height:40rpx !important;
+}
+/*白色样式（false的样式）*/
+.wx-switch-input::before{
+  width:80rpx !important;
+  height: 36rpx !important;
+}
+/*绿色样式（true的样式）*/
+.wx-switch-input::after{
+  width: 40rpx !important;
+  height: 36rpx !important;
+}
+.ipt-wrap:last-child{
+  border-bottom:none;
+}
+
+/* 顶部 */
+.top{
+ min-height: 100rpx;
+ padding: 0 20rpx;
+ line-height: 80rpx;
+ font-size: 34rpx;
+ border-bottom: 1px solid #ccc;
+}
+.top-text{
+ float: left
+}
+/* 下拉框 */
+.top-selected{
+  width: 75%;/*下拉框的长度*/
+  display: flex;
+  float: right;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  padding: 0 10rpx;
+  font-size: 20rpx;
+}
+/* 下拉内容 */
+.select_box {
+  background-color: #fff;
+  padding: 0 15rpx; /*padding:  0 20rpx;内边距  带两个参数，表示上下都是0px，左右都是20px*/
+  width: 75%;/*下拉框内容的长度*/
+  float: right;
+  position: relative;
+  right: 0;
+  z-index: 1;
+  overflow: hidden;
+  text-align: left;
+  animation: myfirst 0.5s;
+  font-size: 20rpx;/*设置字体尺寸大小*/
+}
+.select_one {
+  padding-left: 20rpx;
+  width: 100%;
+  height: 60rpx;
+  position: relative;
+  line-height: 30rpx;
+  border-bottom: 1px solid #ccc;
+}
+/* 下拉过度效果 */
+@keyframes myfirst {
+  from {
+    height: 0rpx;
+  }
+  
+  to {
+    height: 100rpx;
+  }
+}
+/* 下拉图标 */
+.top-selected image{
+ height:50rpx;
+ width:50rpx;
+ position: absolute;
+ right: 0rpx;
+ top: 20rpx;
+}
+/* 下拉框 */
+.top-selectedd{
+  width: 20%;/*下拉框的长度*/
+  display: flex;
+  float: right;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  padding: 0 10rpx;
+  font-size: 20rpx;
+}
+/* 下拉内容 */
+.select_boxx {
+  background-color: #fff;
+  padding: 0 15rpx; /*padding:  0 20rpx;内边距  带两个参数，表示上下都是0px，左右都是20px*/
+  width: 20%;/*下拉框内容的长度*/
+  float: right;
+  position: relative;
+  right: 0;
+  z-index: 1;
+  overflow: hidden;
+  text-align: left;
+  animation: myfirst 0.5s;
+  font-size: 20rpx;/*设置字体尺寸大小*/
+}
+.select_onee {
+  padding-left: 20rpx;
+  width: 100%;
+  height: 50rpx;
+  position: relative;
+  line-height: 30rpx;
+  border-bottom: 1px solid #ccc;
+}
+/* 下拉过度效果 */
+@keyframes myfirst {
+  from {
+    height: 0rpx;
+  }
+  
+  to {
+    height: 100rpx;
+  }
+}
+/* 下拉图标 */
+.top-selectedd image{
+ height:50rpx;
+ width:50rpx;
+ position: absolute;
+ right: 0rpx;
+ top: 20rpx;
+}
+
+
+/*省市区start*/
+page{
+  background: #F9F9F9
+}
+.container{
+  padding: 0;
+}
+.installForm{
+  width: 100%;
+  height: 100%;
+}
+.address{
+  width: 100%;
+  margin: 50rpx 0 0 3%;
+  border-radius: 5px;
+  box-shadow: 0px 2px  5px #ccc;
+}
+.selectAddress{
+  width: 100%;
+  height: 80rpx;
+  background: #fff;
+  border-bottom: 1px solid #F2F2F2;
+}
+.address_diZhi{
+  width: 10%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  background: #fff;
+  float:left;
+  text-align: center;
+}
+.address_province{
+  width: 30%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  background: #fff;
+  float:left;
+  text-align: center;
+}
+.address_custNumber{
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  background: #fff;
+  float:left;
+  text-align: center;
+}
+.address_city{
+  width: 50%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  background: #fff;
+  float:left;
+  text-align: center;
+}
+.address_number{
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  background: #fff;
+  float:left;
+  text-align: center;
+}
+.selecrtImg{
+  float:right;
+  margin-top: 10rpx;
+}
+/*省市区end*/
+
+/*保存按钮*/ 
+.loginBtnView { 
+ width: 100%; 
+ height: auto; 
+ background-color: #f2f2f2; 
+ margin-top: 0px; 
+ margin-bottom: 0px; 
+ padding-bottom: 0px; 
+} 
+.loginBtn { 
+ width: 80%; 
+ margin-top: 35px; 
+} 
+/*保存按钮end*/ 
