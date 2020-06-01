@@ -8,213 +8,218 @@ Page({
   /**
    * data:页面的初始数据
    */
+
   data: {
+    product: '',//产品
+    specModel: '',//规格型号
+    price: '',// 单价
+    multiArray: [[], [], []],//multiArray代表显示的[省,市,区]数组
+    multiIndex: [0, 0, 0],//multiIndex代表滑动后定位的下标数组,从数据库获取数据后通过[0,0,0]得到初始化的multiArray
     //省市区start
     province: '',
     city: '',
     district: '',
     custNumber: '',
-    provinceIndex: '',
-    cityIndex: '',
-    districtIndex: '',
-    custNumberIndex: '',
+    provinceIndex: 0,
+    cityIndex: 0,
+    districtIndex: 0,
+    custNumberIndex: 0,
     provinceCode: '',
     cityCode: '',
     districtCode: '',
     custNumberCode: '',
     //省市区end
+
     //是否发票随货
-    selectt: false,
-    billPr: '请选择',
-    billProduct: [
-      '是',
-      '否',
-    ],
-    indexBill: 0,
+    // selectBill: false,
+    // billPr: '请选择',
+    // billProduct: [
+    //   '是',
+    //   '否',
+    // ],
+    // indexBill: 0,
+
+    // //点击下拉框
+    // bindShowMsgBill() {
+    //   this.setData({
+    //     selectBill: !this.data.selectBill
+    //   })
+    // },
+
+    // //已选下拉框
+    // mySelectBill(e) {
+    //   var indexBill = e.currentTarget.dataset
+    //   console.log("indexBill=" + indexBill)
+    //   var name = e.currentTarget.dataset.name;
+    //   this.setData({
+    //     indexBill: indexBill,
+    //     billPr: name,
+    //     selectBill: !this.data.selectBill
+    //   })
+    // },
     //是否发票随货end
-    //是否开电子发票(接收邮箱）
-    selecttt: false,
-    billEma: '请选择',
+
+    //开票信息
+    selectEmail: false,
+    billEma: '以提供开票信息开票',
     billEmail: [
-      '是',
-      '否',
+      '以采购单位名称和纳税识别号开票',
+      '以提供开票信息开票',
     ],
     indexEmail: 0,
-    //是否开电子发票(接收邮箱）end
-    dates: '2008-08-08',
-    //产品列表start
-    selecttt: false,
-    gradeName: '请选择',
-    productname: [
-      '重组乙型肝炎疫苗(汉逊酵母)',
-      '甲型肝炎灭火疫苗(人二倍体细胞)',
-      '腮腺炎减毒活疫苗',
-      'ACYMW135群脑膜炎球菌多糖疫苗',
-      '冻干人用狂犬疫苗(Vero细胞)',
-      '双价肾综合症出血热疫苗(Vero细胞)',
+    //开票信息end
+    
+
+    //渠道(自营&推广)
+    selectCanalsValue: false,
+    canals: '自营',
+    canalsValue: [
+      '自营',
+      '推广',
     ],
-    index: 0,
-    //产品列表end
-    //规格型号start
-    selectttt: false,
-    spec: '请选择',
-    spec_model: [
-      '0.5ml/瓶',
-      '0.5ml/瓶(5瓶)',
-      '1.0ml/瓶',
-      '1.0ml*5瓶/人份',
-      '10μg/0.5ml/瓶',
-      '10μg/0.5ml/支',
-      '20μg/0.5ml/瓶',
-      '20μg/0.5ml/支',
-      '320eu/0.5ml/瓶',
-      '640eu/1ml/瓶',
-      '320eu/0.5ml/支',
-      '640eu/1ml/支'
+    indexCanalsValue: 0,
+    //渠道(自营&推广)end
+    
+    //大区
+    selectDistrictValue: false,
+    region: '东区',
+    districtValue: [
+      '东区',
+      '南区',
+      '西区',
+      '北区',
     ],
-    specIndex: 0,
-    //规格型号end
-    //单价/开票价(元)start
-    selectPrice: false,
-    pri: '请选择',
-    price: [
-      '58',
-      '60',
-      '70',
-      '72',
-      '78',
-      '80',
-      '85',
-      '95',
-      '108',
-      '138',
-      '158'
-    ],
-    priceIndex: 0,
-    //单价/开票价(元)end
+    indexDistrictValue: 0,
+    //大区end
+
+   
     qtyValue: '',
     cDCCGTValue: '',
-    speReqValue: '',
+    speReqValue: '',//特殊要求
     phoneValue: '',
     electrValue: '',
     mIValue: '',
     clerkPhoValue: '',
-    canalsValue: '',
-    districtValue: '',
+    dates: '',  //疾控常规收货时间
+    billPr: '',  //是否发票随货
+    contract: '',//合同是否随货
   },
-  /**
- * 点击下拉框
- */
-  bindShowMsgg() {
+  //开票信息
+  //点击下拉框
+  bindShowMsgEmail() {
     this.setData({
-      selectt: !this.data.selectt
+      selectEmail: !this.data.selectEmail
     })
   },
-  /**
-   * 已选下拉框
-   */
-  mySelectt(e) {
-    var indexBill = e.currentTarget.dataset
-    console.log("indexBill=" + indexBill)
-    var name = e.currentTarget.dataset.name;
-    this.setData({
-      indexBill: indexBill,
-      billPr: name,
-      selectt: !this.data.selectt
-    })
-  },
-  /**
- * 点击下拉框
- */
-  bindShowMsggg() {
-    this.setData({
-      selecttt: !this.data.selecttt
-    })
-  },
-  /**
-   * 已选下拉框
-   */
-  mySelecttt(e) {
+  //已选下拉框
+  mySelectEmail(e) {
     var indexEmail = e.currentTarget.dataset
     console.log("indexEmail=" + indexEmail)
     var name = e.currentTarget.dataset.name;
     this.setData({
       indexEmail: indexEmail,
       billEma: name,
-      selecttt: !this.data.selecttt
+      selectEmail: !this.data.selectEmail
     })
   },
-  /**
- * 规格型号点击下拉框
- */
-  bindShowMsgggg() {
-    this.setData({
-      selectttt: !this.data.selectttt
-    })
-  },
-  /**
-   * 规格型号已选下拉框
-   */
-  mySelectttt(e) {
-    var specIndex = e.currentTarget.dataset
-    console.log("specIndex=" + specIndex)
-    var name = e.currentTarget.dataset.name;
-    this.setData({
-      specIndex: specIndex,
-      spec: name,
-      selectttt: !this.data.selectttt
-    })
-  },
-  /**
-* 单价/开票价(元)点击下拉框
-*/
-  bindShowMsgPrice() {
-    this.setData({
-      selectPrice: !this.data.selectPrice
-    })
-  },
-  /**
-   * 单价/开票价(元)已选下拉框
-   */
-  mySelectPrice(e) {
-    var priceIndex = e.currentTarget.dataset
-    console.log("priceIndex=" + priceIndex)
-    var name = e.currentTarget.dataset.name;
-    this.setData({
-      priceIndex: priceIndex,
-      pri: name,
-      selectPrice: !this.data.selectPrice
-    })
-  },
-  //  点击日期组件确定事件 
-  bindDateChange: function (e) {
-    console.log(e.detail.value)
+    //开票信息end
+
+   //点击日期组件确定事件 
+  checkboxDates: function (e) {
     this.setData({
       dates: e.detail.value
     })
   },
-  /**
- * 点击下拉框
- */
-  bindShowMsg() {
+  
+  getDatesValue: function (e) {
     this.setData({
-      select: !this.data.select
+      dates: e.detail.value
     })
   },
-  /**
-   * 已选下拉框
-   */
-  mySelect(e) {
-    console.log(e)
-    console.log('产品选的是', this.data.productname)
-    var index = e.currentTarget.dataset
-    console.log("index=" + index)
+  //点击日期组件确定事件end
+
+  //渠道(自营&推广)
+  //点击下拉框
+  bindShowMsgCanalsValue() {
+    this.setData({
+      selectCanalsValue: !this.data.selectCanalsValue
+    })
+  },
+  //已选下拉框
+  mySelectCanalsValue(e) {
+    var indexCanalsValue = e.currentTarget.dataset
     var name = e.currentTarget.dataset.name;
     this.setData({
-      index: index,
-      gradeName: name,
-      select: !this.data.select
+      indexCanalsValue: indexCanalsValue,
+      canals: name,
+      selectCanalsValue: !this.data.selectCanalsValue
     })
+  },
+    //渠道(自营&推广)end
+
+  //大区
+  //点击下拉框
+  bindShowMsgDistrictValue() {
+    this.setData({
+      selectDistrictValue: !this.data.selectDistrictValue
+    })
+  },
+  //已选下拉框
+  mySelectDistrictValue(e) {
+    var indexDistrictValue = e.currentTarget.dataset
+    var name = e.currentTarget.dataset.name;
+    this.setData({
+      indexDistrictValue: indexDistrictValue,
+      region: name,
+      selectDistrictValue: !this.data.selectDistrictValue
+    })
+  },
+    //大区end
+
+  //点击特殊要求
+  checkboxSpeReqValue: function (e) {
+    this.setData({
+      speReqValue: e.detail.value
+    })
+  },
+
+  getSpeReqValue: function (e) {
+    this.setData({
+      speReqValue: e.detail.value
+    })
+  },
+  //点击特殊要求end
+
+  //点击是否发票随货
+  checkboxBillPr: function (e) {
+    this.setData({
+      billPr: e.detail.value
+    })
+  },
+
+  getBillPr: function (e) {
+    this.setData({
+      billPr: e.detail.value
+    })
+  },
+  //点击是否发票随货end
+
+  //点击合同是否随货
+  checkboxContract: function (e) {
+    this.setData({
+      contract: e.detail.value
+    })
+  },
+
+  getContract: function (e) {
+    this.setData({
+      contract: e.detail.value
+    })
+  },
+  //点击合同是否随货end
+
+  getContract: function (e) {
+    this.setData({ contract: e.detail.value });
   },
   getPri: function (e) {
     this.setData({ pri: e.detail.value });
@@ -257,73 +262,76 @@ Page({
     this.setData({ clerkPhoValue: e.detail.value });
   },
   getCanalsValue: function (e) {
-    this.setData({ canalsValue: e.detail.value });
+    this.setData({ canals: e.detail.value });
   },
   getDistrictValue: function (e) {
-    this.setData({ districtValue: e.detail.value });
+    this.setData({ region: e.detail.value });
   },
-  saveNewAddress: function () {
-    console.log("登录获取的参数：" + this.data.billEma + "," + + this.data.billPr + "," + this.data.gradeName + "," + this.data.qtyValue + "," + this.data.cDCCGTValue + "," + this.data.speReqValue + "," + this.data.phoneValue + "," + this.data.electrValue + "," + this.data.mIValue + "," + this.data.clerkPhoValue + "," + this.data.canalsValue + ","
-      + this.data.districtValue + "," + this.data.provin + "," + this.data.cityy + "," + this.data.distri);
+  saveNewAddress: function (e) {
     var that = this;
     let formValue = {
       values: JSON.stringify({
+        contract: that.data.contract,
         dates: that.data.dates,
         province: that.data.provin,
         city: that.data.cityy,
         district: that.data.distri,
         fName: that.data.custNumberr,//fName:与后台实体类对应
         billEma: that.data.billEma,
-        specModel: that.data.spec,
-        price: that.data.pri,
         billPr: that.data.billPr,
-        gradeName: that.data.gradeName,
         qtyValue: that.data.qtyValue,
-        cDCCGTValue: that.data.cDCCGTValue,
         speReqValue: that.data.speReqValue,
         phoneValue: that.data.phoneValue,
-        electrValue: that.data.electrValue,
         mIValue: that.data.mIValue,
         clerkPhoValue: that.data.clerkPhoValue,
-        canalsValue: that.data.canalsValue,
-        districtValue: that.data.districtValue
+        canalsValue: that.data.canals,
+        districtValue: that.data.region,
+        product: that.data.multiArray[0][that.data.multiIndex[0]],//获得产品名称
+        specModel: that.data.multiArray[1][that.data.multiIndex[1]],//获得规格型号
+        price: that.data.multiArray[2][that.data.multiIndex[2]]//获得单价
       })
     };
-    wx.request({
-      url: 'http://127.0.0.1:8080/b/massage',
-      header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
-      data: {//发送给后台的数据
-        formValue: formValue.values,
-      },
+    if (that.data.clerkPhoValue.length == 0 ||that.data.phoneValue.length == 0 ||that.data.qtyValue.length == 0 ||that.data.provin.length == 0 || that.data.cityy.length == 0 || that.data.distri.length == 0 || that.data.custNumberr.length == 0 ||  that.data.multiArray[0][that.data.multiIndex[0]].length == 0 || that.data.multiArray[1][that.data.multiIndex[1]].length == 0 || that.data.multiArray[2][that.data.multiIndex[2]].length == 0 ) {
+      wx.showToast({
+        title: '提示：信息不能为空！',
+        duration: 2000,
+      })
+    } else {
+      wx.request({
+        url: 'http://127.0.0.1:8080/b/massage',		//218.25.37.253   127.0.0.1		192.168.171.133:1433
+        header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
+        data: {//发送给后台的数据
+          formValue: formValue.values,
+        },
 
-
-      method: 'get',//get为默认方法/POST
-      success: function (res) {
-        console.log("成功");
-        console.log(res);
-        var resData = res.data;
-        console.log(resData + '+++++++');
-        if (resData == "ok") {
-          // 这里修改成跳转的页面 
-          wx.showToast({
-            title: '保存成功',
-            icon: 'success',
-            duration: 2000,
-            success: function () {
-              wx.navigateTo({
-                url: '/pages/kongbai/kongbai'
-              })
-            }
-          })
-        } else {
-          wx.showToast({
-            title: '保存失败',
-            icon: 'none',
-            duration: 2000,
-          })
+        method: 'get',//get为默认方法/POST
+        success: function (res) {
+          console.log("成功");
+          console.log(res);
+          var resData = res.data;
+          console.log(resData + '+++++++');
+          if (resData == "ok") {
+            // 这里修改成跳转的页面 
+            wx.showToast({
+              title: '保存成功',
+              icon: 'success',
+              duration: 2000,
+              success: function () {
+                wx.navigateTo({
+                  url: '/pages/kongbai/kongbai'
+                })
+              }
+            })
+          } else {
+            wx.showToast({
+              title: '保存失败',
+              icon: 'none',
+              duration: 2000,
+            })
+          }
         }
-      }
-    })
+      })
+    }
   },
 
 
@@ -332,6 +340,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getCityStationPer();
     var that = this
     var header = { 'content-type': 'application/json' }
     wx.request({
@@ -423,6 +432,7 @@ Page({
       provinceIndex: currentProIndex,
       cityIndex: '',
       districtIndex: '',
+      custNumberIndex: '',
       provin: prov,
     })
     wx.request({
@@ -458,7 +468,7 @@ Page({
               districtCode: districtCodeArray
             })
             wx.request({
-              url: 'http://127.0.0.1:8080/c/custNumber?parentId=' + custNumberParentId,
+              url: 'http://127.0.0.1:8080/c/custNumber?parentId=' + custNumberParentId, //127.0.0.1:8080
               method: 'POST',
               header: header,
               success: function (custNumberRes) {
@@ -490,8 +500,16 @@ Page({
     that.setData({
       cityIndex: currentCityIndex,
       districtIndex: '',
+      custNumberIndex: '',
       cityy: cit,
+
+
+
+
+
     })
+
+
     wx.request({
       url: 'http://127.0.0.1:8080/c/district?parentId=' + currentCityCode,
       method: 'POST',
@@ -541,7 +559,14 @@ Page({
       districtIndex: currentdistrictIndex,
       custNumberIndex: '',
       distri: distr,
+
+
+
+
+
     })
+
+
     wx.request({
       url: 'http://127.0.0.1:8080/c/custNumber?parentId=' + currentdistrictCode,
       method: 'POST',
@@ -570,9 +595,112 @@ Page({
     that.setData({
       custNumberIndex: currentcustNumberIndex,
       custNumberr: custNum,
+
+
+
+
+
+
     })
+
+
   },
 
+  /*****获取产品名称-规格型号-单价 */
+  getCityStationPer: function () {
+    let that = this
+    that.setData({
+      product: [
+        '重组乙型肝炎疫苗(汉逊酵母)',
+        '甲型肝炎灭火疫苗(人二倍体细胞)',
+        '腮腺炎减毒活疫苗',
+        'ACYMW135群脑膜炎球菌多糖疫苗',
+        '冻干人用狂犬疫苗(Vero细胞)',
+        '双价肾综合症出血热疫苗(Vero细胞)'
+      ],//存放产品
+      specModel: {
+        '重组乙型肝炎疫苗(汉逊酵母)': ['10μg/0.5ml/瓶', '10μg/0.5ml/支', '20μg/0.5ml/瓶', '20μg/0.5ml/支'],
+        '甲型肝炎灭火疫苗(人二倍体细胞)': ['320eu/0.5ml/瓶', '640eu/1ml/瓶', '320eu/0.5ml/支', '640eu/1ml/支'],
+        '腮腺炎减毒活疫苗': ['0.5ml/瓶', '0.5ml/瓶(5瓶)'],
+        'ACYMW135群脑膜炎球菌多糖疫苗': ['0.5ml/瓶'],
+        '冻干人用狂犬疫苗(Vero细胞)': ['1.0ml/瓶(冻干)', '1.0ml*5瓶/人份'],
+        '双价肾综合症出血热疫苗(Vero细胞)': ['1.0ml/瓶(双价)']
+      },
+      price: {
+        '10μg/0.5ml/瓶': ['46', '46.5', '47', '70'],
+        '10μg/0.5ml/支': ['68.4', '69', '70.9', '71', '85'],
+        '20μg/0.5ml/瓶': ['70', '71.5', '72.5', '73', '95'],
+        '20μg/0.5ml/支': ['84', '86', '88', '108'],
+        '320eu/0.5ml/瓶': ['80', '81', '118'],
+        '320eu/0.5ml/支': ['100', '101', '138'],
+        '640eu/1ml/瓶': ['90', '96', '138'],
+        '640eu/1ml/支': ['110', '158'],
+        '0.5ml/瓶': ['58', '59', '78'],
+        '0.5ml/瓶(5瓶)': ['39', '43', '44', '46', '58'],
+        '0.5ml/瓶': ['80'],
+        '1.0ml/瓶': ['72', '57', '60'],
+        '1.0ml*5瓶/人份': ['50', '44', '47', '50.7', '51', '52', '53','60'],
+        '1.0ml/瓶(10瓶/盒)': ['44','58']
+      },
+    })
+    that.data.multiArray[0] = that.data.product;
+    that.data.multiArray[1] = this.getArr(that.data.product[0], that.data.specModel);
+    that.data.multiArray[2] = this.getArr(that.data.multiArray[1][0], that.data.price);
+    that.setData({
+      multiArray: that.data.multiArray
+    })
+  },
+  /****列发生改变,通过滑动调用bindMultiPickerColumnChange方法得到新的数组下标数组，进而得到新的数据数组。 */
+  bindMultiPickerColumnChange: function (e) {
+    let that = this
+    console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
+    var data = {
+      multiArray: this.data.multiArray,
+      multiIndex: this.data.multiIndex,
+      product: this.data.product,
+      specModel: this.data.specModel,
+      price: this.data.price
+    };
+    data.multiIndex[e.detail.column] = e.detail.value;
+    switch (e.detail.column) {
+      case 0:
+        //第一列改变  设置第二列数据
+        let arr = that.getArr(that.data.product[e.detail.value], that.data.specModel)
+        data.multiArray[1] = arr
+        that.setData({
+          multiArray: data.multiArray
+        })
+        //从第二列中拿出第一项，设置第三组人员
+        let arrColumn2 = that.getArr(arr[0], that.data.price)
+        data.multiArray[2] = arrColumn2
+        that.setData({
+          multiArray: data.multiArray
+        })
+        break;
+      case 1:
+        //第二列改变 设置第三列数据
+        let arr2 = that.getArr(data.multiArray[1][e.detail.value], that.data.price)
+        data.multiArray[2] = arr2
+        that.setData({
+          multiArray: data.multiArray
+        })
+        break;
+    }
+  },
+  getArr: function (value, arr) {
+    for (let i in arr) {
+      if (value == i) {
+        return arr[i]
+      }
+    }
+
+  },
+  /****值发生改变  点击确定按钮*/
+  bindMultiPickerChange: function (e) {
+    this.setData({
+      multiIndex: e.detail.value
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -615,11 +743,4 @@ Page({
   onReachBottom: function () {
 
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

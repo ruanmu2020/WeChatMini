@@ -1,188 +1,241 @@
-<view class="container">
-  <!--省市区start-->
-  <view class='address'>
-    <view class='selectAddress'>
-      <picker mode="selector"   class='address_diZhi' >
-        <label for="" class="font14">地址</label>
-      </picker>
-      <picker mode="selector" range="{{province}}" value="{{provinceIndex}}" bindchange="provincePicker" class='address_province'
-              data-procode="{{provinceCode}}">
-        <text>{{province[provinceIndex]}}</text>
-        <image src='/images/down2.png' style='width: 56rpx;height: 56rpx;' class='selecrtImg'></image>
-      </picker>
-      <picker mode="selector" range="{{city}}" value="{{cityIndex}}" bindchange="cityPicker" class='address_province' 
-              data-citycode="{{cityCode}}">
-        <text>{{city[cityIndex]}}</text>
-        <image src='/images/down2.png' style='width: 56rpx;height: 56rpx;' class='selecrtImg'></image>
-      </picker>
-      <picker mode="selector" range="{{district}}" value="{{districtIndex}}" bindchange="districtPicker" class='address_province'
-              data-councode="{{districtCode}}">
-        <text>{{district[districtIndex]}}</text>
-        <image src='/images/down2.png' style='width: 56rpx;height: 56rpx;' class='selecrtImg'></image>
-      </picker>
-      <picker mode="selector" range="{{custNumber}}" value="{{custNumberIndex}}" bindchange="custNumberPicker" class='address_custNumber'
-              data-councode="{{custNumberCode}}">
-        <text>{{custNumber[custNumberIndex]}}</text>
-        <image src='/images/down2.png' style='width: 56rpx;height: 56rpx;' class='selecrtImg'></image>
-      </picker>
-    </view>
-  </view>
-  <!--省市区end-->
+	<view class="container">
+	  <!--省市区start-->
+	  <view class='address'>
+		<view class='selectAddress'>
+		  <picker mode="selector"   class='address_diZhi' >
+			<label for="" class="font14">地址</label>
+		  </picker>
+		  <picker mode="selector" range="{{province}}" value="{{provinceIndex}}" bindchange="provincePicker" class='address_province'
+				  data-procode="{{provinceCode}}">
+			<text>{{province[provinceIndex]}}</text>
+			<image src='/images/down2.png' style='width: 56rpx;height: 56rpx;' class='selecrtImg'></image>
+		  </picker>
+		  <picker mode="selector" range="{{city}}" value="{{cityIndex}}" bindchange="cityPicker" class='address_province' 
+				  data-citycode="{{cityCode}}">
+			<text>{{city[cityIndex]}}</text>
+			<image src='/images/down2.png' style='width: 56rpx;height: 56rpx;' class='selecrtImg'></image>
+		  </picker>
+		  <picker mode="selector" range="{{district}}" value="{{districtIndex}}" bindchange="districtPicker" class='address_province'
+				  data-councode="{{districtCode}}">
+			<text>{{district[districtIndex]}}</text>
+			<image src='/images/down2.png' style='width: 56rpx;height: 56rpx;' class='selecrtImg'></image>
+		  </picker>
+		  <picker mode="selector" range="{{custNumber}}" value="{{custNumberIndex}}" bindchange="custNumberPicker" class='address_custNumber'
+				  data-councode="{{custNumberCode}}">
+			<text>{{custNumber[custNumberIndex]}}</text>
+			<image src='/images/down2.png' style='width: 56rpx;height: 56rpx;' class='selecrtImg'></image>
+		  </picker>
+		</view>
+	  </view>
+	  <!--省市区end-->
 
-  <view class="bg-fff p-lr30 border-t">
-  <!-- 下拉需要显示的列表 -->
-    <view class='top'>
-      <view class='top-text'>
-        <label for="" class="font14">选择产品</label>
-      </view>
-      <!-- 下拉框 -->
-        <view class='top-selected' bindtap='bindShowMsg'>
-          <text>{{gradeName}}</text>
-        </view>
-        <!-- 下拉需要显示的列表 -->
-       <view class="select_box" wx:if="{{select}}">
-          <view  wx:for="{{productname}}" wx:key="unique">
-            <view class="select_one" data-index='{{graIndex}}' bindtap="mySelect" data-name="{{item}}">{{item}}</view>
-          </view>
-      </view>
-    </view>
+	  
+	  <!--产品start-->
+	  <view class='address'>
+		<view class='selectAddress'>
+		  <view class="ipt-wrap border-b flex ai-center jc-sb ">
+			  <view class="flex ai-center">
+				<text for="" class="font14" decode="{{true}}">产品名称&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;规格型号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单价/开票价(元)</text>
+			  </view>
+		  </view>
+		</view>
+	  </view>
+	  <!--产品end-->
 
-    <!-- 规格型号下拉需要显示的列表 -->
-    <view class='top'>
-      <view class='top-text'>
-        <label for="" class="font14">规格型号</label>
-      </view>
-      <!-- 下拉框 -->
-        <view class='top-selected' bindtap='bindShowMsgggg'>
-          <text>{{spec}}</text>
-        </view>
-        <!-- 下拉需要显示的列表 -->
-       <view class="select_box" wx:if="{{selectttt}}">
-          <view  wx:for="{{spec_model}}" wx:key="unique">
-            <view class="select_one" data-index='{{specIndex}}' bindtap="mySelectttt" data-name="{{item}}">{{item}}</view>
-          </view>
-      </view>
-    </view>
-    <!-- 规格型号下拉需要显示的列表end -->
+	  <view class="bg-fff p-lr30 border-t">
+		<view class='ipt-wrap border-b flex ai-center jc-sb '>
+		  <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+			<view class="picker">
+			  {{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}，{{multiArray[2][multiIndex[2]]}}
+			</view>
+		  </picker>
+		</view>
 
-    <!-- 单价/开票价(元)下拉需要显示的列表 -->
-    <view class='top'>
-      <view class='top-text'>
-        <label for="" class="font14">单价/开票价(元)</label>
-      </view>
-      <!-- 下拉框 -->
-        <view class='top-selectedd' bindtap='bindShowMsgPrice'>
-          <text>{{pri}}</text>
-        </view>
-        <!-- 下拉需要显示的列表 -->
-       <view class="select_boxx" wx:if="{{selectPrice}}">
-          <view  wx:for="{{price}}" wx:key="unique">
-            <view class="select_onee" data-index='{{specIndex}}' bindtap="mySelectPrice" data-name="{{item}}">{{item}}</view>
-          </view>
-      </view>
-    </view>
-    <!-- 单价/开票价(元)下拉需要显示的列表end -->
+    
+		<!-- 下拉需要显示的列表：疾控常规收货时间 -->
+		<view class='ipt-wrap border-b flex ai-center jc-sb'>
+		  <view class='top-text'>  
+			<label for="" class="font14">疾控常规收货时间
+        <checkbox-group bindchange="checkboxDates">
+          <checkbox value="无要求">无要求</checkbox>
+          <checkbox value="工作日即可">工作日即可</checkbox>
+        </checkbox-group>
+        <checkbox >
+            <input type="text" class="ml40 flex1" placeholder="其他(填写具体要求)请输入" bindinput="getDatesValue"></input>
+          </checkbox>
+      </label>
+		  </view>
+		</view>
+		<!-- 下拉需要显示的列表：疾控常规收货时间end -->
 
-
-    <view class="ipt-wrap border-b flex ai-center jc-sb ">
-      <view class="flex ai-center">
-        <label for="" class="font14">数量</label>
-        <input type="text" class="ml40 flex1" placeholder="请输入" bindinput="getQtyValue"></input>
-      </view>
-    </view>
-
-    <view class="ipt-wrap border-b flex ai-center jc-sb ">
-      <view class="flex ai-center">  
-        <picker mode="date" value="{{date}}" start="1978-01-01" end="2099-12-31" bindchange="bindDateChange">  
-          <view class="picker">  
-            <label for="" class="font14">疾控常规收货时间</label> : {{dates}}  
-          </view>  
-        </picker>  
-      </view>  
-    </view>
-
-    <view class="ipt-wrap border-b flex ai-center jc-sb ">
-      <view class="flex ai-center">
-        <label for="" class="font14">特殊要求</label>
-        <input type="text" class="ml40 flex1" placeholder="请输入" bindinput="getSpeReqValue"></input>
-      </view>
-    </view>
-    <!-- 下拉需要显示的列表：是否发票随货 -->
-    <view class='top'>
-      <view class='top-text'> 
-        <label for="" class="font14">是否发票随货</label>
-      </view>
-      <!-- 下拉框 -->
-        <view class='top-selectedd' bindtap='bindShowMsgg'>
-          <text>{{billPr}}</text>
-        </view>
-        <!-- 下拉需要显示的列表 -->
-        <view class="select_boxx" wx:if="{{selectt}}">
-          <view  wx:for="{{billProduct}}" wx:key="unique">
-            <view class="select_onee" data-index='{{indexBill}}' bindtap="mySelectt" data-name="{{item}}">{{item}}</view>
-          </view>
-        </view>
-    </view>
-    <!-- 下拉需要显示的列表：是否发票随货end -->
-
-    <view class="ipt-wrap border-b flex ai-center jc-sb ">
-      <view class="flex ai-center">
-        <label for="" class="font14">合同/发票收件人联系方式</label>
-        <input type="text" class="ml40 flex1" placeholder="请输入" bindinput="getPhoneValue"></input>
-      </view>
-    </view>
-
-    <view class="ipt-wrap border-b flex ai-center jc-sb ">
-      <view class="flex ai-center">
-        <label for="" class="font14">开票信息</label>
-        <input type="text" class="ml40 flex1" placeholder="请输入" bindinput="getMIValue"></input>
-      </view>
-    </view>
+     <!-- 下拉需要显示的列表：特殊要求 -->
+		<view class='ipt-wrap border-b flex ai-center jc-sb'>
+		  <view class='top-text'>  
+			<label for="" class="font14">特殊要求
+        <checkbox-group bindchange="checkboxSpeReqValue">
+          <checkbox value="在途温度">在途温度</checkbox>
+          <checkbox value="在库温度">在库温度</checkbox>
+          <checkbox value="配送商资质">配送商资质</checkbox>
+          <checkbox value="配送商协议">配送商协议</checkbox>
+          <checkbox value="产品效期6个月以上">产品效期6个月以上</checkbox>
+        </checkbox-group>
+        <checkbox >
+            <input type="text" class="ml40 flex1" placeholder="其他(填写具体要求)请输入" bindinput="getSpeReqValue"></input>
+          </checkbox>
+      </label>
+		  </view>
+		</view>
+		<!-- 下拉需要显示的列表：特殊要求end -->
 
     <!-- 下拉需要显示的列表：是否发票随货 -->
-    <view class='top'>
-      <view class='top-text'> 
-        <label for="" class="font14">是否开电子发票</label>
-      </view>
-      <!-- 下拉框 -->
-        <view class='top-selectedd' bindtap='bindShowMsggg'>
-          <text>{{billEma}}</text>
-        </view>
-        <!-- 下拉需要显示的列表 -->
-        <view class="select_boxx" wx:if="{{selecttt}}">
-          <view  wx:for="{{billEmail}}" wx:key="unique">
-            <view class="select_onee" data-index='{{indexEmail}}' bindtap="mySelecttt" data-name="{{item}}">{{item}}</view>
-          </view>
-        </view>
-    </view>
-    <!-- 下拉需要显示的列表：是否发票随货end -->
+		<view class='ipt-wrap border-b flex ai-center jc-sb'>
+		  <view class='top-text'>  
+        <label for="" class="font14">是否发票随货
+          <checkbox-group bindchange="checkboxBillPr">
+            <checkbox value="是">是</checkbox>
+          </checkbox-group>
+          <checkbox  value="否">否
+           <input type="text" class="ml40 flex1" placeholder="若否，请此处填写" bindinput="getBillPr"></input>
+          </checkbox>
+        </label>
+		  </view>
+		</view>
+		<!-- 下拉需要显示的列表：是否发票随货end -->
 
-    <view class="ipt-wrap border-b flex ai-center jc-sb ">
-      <view class="flex ai-center">
-        <label for="" class="font14">区域业务员（电话）</label>
-        <input type="text" class="ml40 flex1" placeholder="请输入" bindinput="getClerkPhoValue"></input>
-      </view>
-    </view>
+    <!-- 下拉需要显示的列表：合同是否随货 -->
+		<view class='ipt-wrap border-b flex ai-center jc-sb'>
+		  <view class='top-text'>  
+        <label for="" class="font14">合同是否随货
+          <checkbox-group bindchange="checkboxContract">
+            <checkbox value="是">是</checkbox>
+          </checkbox-group>
+          <checkbox  value="否">否
+              <input type="text" class="ml40 flex1" placeholder="若否，请此处填写" bindinput="getContract"></input>
+            </checkbox>
+        </label>
+		  </view>
+		</view>
+		<!-- 下拉需要显示的列表：合同是否随货end -->
 
-    <view class="ipt-wrap border-b flex ai-center jc-sb ">
-      <view class="flex ai-center">
-        <label for="" class="font14">渠道(自营&推广)</label>
-        <input type="text" class="ml40 flex1" placeholder="请输入" bindinput="getCanalsValue"></input>
-      </view>
-    </view>
+		<view class="ipt-wrap border-b flex ai-center jc-sb ">
+		  <view class="flex ai-center">
+			<label for="" class="font14">数量</label>
+			<input type="text" class="ml40 flex1" placeholder="请输入" bindinput="getQtyValue"></input>
+		  </view>
+		</view>
 
-    <view class="ipt-wrap border-b flex ai-center jc-sb ">
-      <view class="flex ai-center">
-        <label for="" class="font14">大区</label>
-        <input type="text" class="ml40 flex1" placeholder="请输入" bindinput="getDistrictValue"></input>
-      </view>
-    </view>
-  </view>
+		<!-- <view class="ipt-wrap border-b flex ai-center jc-sb ">
+		  <view class="flex ai-center">  
+			<picker mode="date" value="{{date}}" start="1978-01-01" end="2099-12-31" bindchange="bindDateChange">  
+			  <view class="picker">  
+				<label for="" class="font14">疾控常规收货时间</label> : {{dates}}  
+			  </view>  
+			</picker>  
+		  </view>  
+		</view> -->
+
+    
+
+		<!-- 下拉需要显示的列表：是否发票随货 -->
+		<!--<view class='ipt-wrap border-b flex ai-center jc-sb'>
+		  <view class='top-text'> 
+			<label for="" class="font14">是否发票随货</label>
+		  </view>
+		  <!-- 下拉框 -->
+			<!--<view class='top-selectedd' bindtap='bindShowMsgBill'>
+			  <text>{{billPr}}</text>
+			</view>
+			<!-- 下拉需要显示的列表 -->
+			<!--<view class="select_boxx" wx:if="{{selectBill}}">
+			  <view  wx:for="{{billProduct}}" wx:key="unique">
+				<view class="select_onee" data-index='{{indexBill}}' bindtap="mySelectBill" data-name="{{item}}">{{item}}</view>
+			  </view>
+			</view>
+		</view>
+    -->
+		<!-- 下拉需要显示的列表：是否发票随货end -->
+
+		<view class="ipt-wrap border-b flex ai-center jc-sb ">
+		  <view class="flex ai-center">
+			<label for="" class="font14">合同/发票收件人联系方式</label>
+			<input type="text" class="ml40 flex1" placeholder="请输入" bindinput="getPhoneValue"></input>
+		  </view>
+		</view>
+
+    
+
+		<!-- 下拉需要显示的列表：开票信息 -->
+		<view class='ipt-wrap border-b flex ai-center jc-sb'>
+		  <view class='top-text'> 
+			<label for="" class="font14">开票信息</label>
+		  </view>
+		  <!-- 下拉框 -->
+			<view class='top-selecteddd' bindtap='bindShowMsgEmail'>
+			  <text>{{billEma}}</text>
+			</view>
+			<!-- 下拉需要显示的列表 -->
+			<view class="select_boxxx" wx:if="{{selectEmail}}">
+			  <view  wx:for="{{billEmail}}" wx:key="unique">
+				<view class="select_oneee" data-index='{{indexEmail}}' bindtap="mySelectEmail" data-name="{{item}}">{{item}}</view>
+			  </view>
+			</view>
+		</view>
+		<!-- 下拉需要显示的列表：开票信息end -->
+
+		<view class="ipt-wrap border-b flex ai-center jc-sb ">
+		  <view class="flex ai-center">
+			<label for="" class="font14">区域业务员（电话）</label>
+			<input type="text" class="ml40 flex1" placeholder="请输入" bindinput="getClerkPhoValue"></input>
+		  </view>
+		</view>
+
+    
+
+    <!-- 下拉需要显示的列表：渠道(自营&推广) -->
+		<view class='ipt-wrap border-b flex ai-center jc-sb'>
+		  <view class='top-text'> 
+			<label for="" class="font14">渠道</label>
+		  </view>
+		  <!-- 下拉框 -->
+			<view class='top-selectedd' bindtap='bindShowMsgCanalsValue'>
+			  <text>{{canals}}</text>
+			</view>
+			<!-- 下拉需要显示的列表 -->
+			<view class="select_boxx" wx:if="{{selectCanalsValue}}">
+			  <view  wx:for="{{canalsValue}}" wx:key="unique">
+				<view class="select_onee" data-index='{{indexCanalsValue}}' bindtap="mySelectCanalsValue" data-name="{{item}}">{{item}}</view>
+			  </view>
+			</view>
+		</view>
+		<!-- 下拉需要显示的列表：渠道(自营&推广)end -->
+
+    
+    
+    <!-- 下拉需要显示的列表：大区 -->
+		<view class='ipt-wrap border-b flex ai-center jc-sb'>
+		  <view class='top-text'> 
+			<label for="" class="font14">大区</label>
+		  </view>
+		  <!-- 下拉框 -->
+			<view class='top-selectedd' bindtap='bindShowMsgDistrictValue'>
+			  <text>{{region}}</text>
+			</view>
+			<!-- 下拉需要显示的列表 -->
+			<view class="select_boxx" wx:if="{{selectDistrictValue}}">
+			  <view  wx:for="{{districtValue}}" wx:key="unique">
+				<view class="select_onee" data-index='{{indexDistrictValue}}' bindtap="mySelectDistrictValue" data-name="{{item}}">{{item}}</view>
+			  </view>
+			</view>
+		</view>
+		<!-- 下拉需要显示的列表：大区end -->
+
+		
+	  </view>
 
 
-  <!--保存按钮--> 
-  <view class="loginBtnView"> 
-    <button class="loginBtn"  data-url="../addNewAddress/addNewAddress" bindtap="saveNewAddress" value="OK" >保存</button> 
-  </view> 
+	  <!--保存按钮--> 
+	  <view class="loginBtnView"   > 
+		<button class="loginBtn"  data-url="../addNewAddress/addNewAddress" bindtap="saveNewAddress" value="OK" >保存</button> 
+	  </view> 
 
 </view>
